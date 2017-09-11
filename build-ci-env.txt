@@ -1,9 +1,9 @@
 1. 自动化测试中测试流程
-    boot完之后，自动通过ssh登录板子，自动进行测试
+   boot完之后，自动通过ssh登录板子，自动进行测试
 
 2. 本地调试步骤
-    1) 启动板子，再查看ip , 用ssh 登录 root /root
-    2) 下载 https://github.com/AlamelaLiu/test-definitions.git  准备测试环境(lava1的环境,后续lava2会有所变化)
+    1) 启动板子
+    2) 准备测试环境(lava1的环境,后续lava2会有所变化)
     git clone https://git.linaro.org/qa/test-definitions.git -b rpb-16.12
     cd test-definitions
     . ./automated/bin/setenv.sh
@@ -11,6 +11,7 @@
     wget https://bootstrap.pypa.io/get-pip.py    pip也是一种管理工具
     python get-pip.py
     pip install -r ${REPO_PATH}/automated/utils/requirements.txt
+    (opensuse: pip2 install -r ${REPO_PATH}/automated/utils/requirements.txt )
     cd ~
 
 lava_server: 
@@ -23,3 +24,10 @@ lava_server:
 
 3) 下载 https://github.com/AlamelaLiu/ci-test-cases.git case测试脚本
     git clone https://github.com/EstuaryTestTeam/ci-test-cases.git
+    test-runner -d app/samba/samba.yaml
+
+
+编写app case的规范:
+1) 新建的app case新建以case名称命名的文件夹,文件夹内放其yaml和sh文件,yaml文件由CI系统调用来触发测试,sh文件用来存放case的测试脚本;
+2) 相关的共用接口放在app/utils中,如安装,启动服务等,大家尽量养成使用共用接口的良好习惯,方便之后版本更新;
+3) 注意: case的分解用例需要最后以报告的格式输出,可参照app/samba/samba.sh中提交格式,使用 app/utils/sys_info.sh中print_info接口

@@ -1,0 +1,21 @@
+以组的形式管理ci-test-cases中代码的方法:
+
+git clone https://github.com/EstuaryTestTeam/ci-test-cases.git
+git branch -a 查看本地及远程分支
+git git fetch origin dev-你名字简称:dev-你名字简称
+git branch -a 再次查看本地及远程分支
+git checkout dev-你名字简称
+git branch 查看带*的分支是否为 dev-你名字简称
+
+
+
+第一次提交时输入
+git push
+提示 git push --set-upstream origin dev-你名字简称
+则输入 git push --set-upstream origin dev-你名字简称
+之后修改后 提交直接用git push即可
+
+说明:
+1.master分支为正式发布版本,CI系统跑的也是这个分支的脚本;
+2.每个人都具有read,clone,wirte的权限,仅需要维护带自己名字的分支下的脚本,用来调试(注意不要轻易修改master分支);
+3.管理员账户定期来merge各个分支到master分支,目前的进度是每周一次,周五下班前merge.

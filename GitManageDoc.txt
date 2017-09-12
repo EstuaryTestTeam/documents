@@ -2,7 +2,7 @@
 
 git clone https://github.com/EstuaryTestTeam/ci-test-cases.git
 git branch -a 查看本地及远程分支
-git git fetch origin dev-你名字简称:dev-你名字简称
+git fetch origin dev-你名字简称:dev-你名字简称
 git branch -a 再次查看本地及远程分支
 git checkout dev-你名字简称
 git branch 查看带*的分支是否为 dev-你名字简称

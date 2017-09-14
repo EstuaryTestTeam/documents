@@ -1,5 +1,10 @@
-1. 自动化测试中测试流程
-   boot完之后，自动通过ssh登录板子，自动进行测试
+
+1. 编写app case的规范:(可参照app/samba/samba.yaml中格式)
+1) 新建的app case新建以case名称命名的文件夹,文件夹内放其yaml和sh文件,yaml文件由CI系统调用来触发测试,sh文件用来存放case的测试脚本;
+   注意: yaml中run/step相对路径是: ci-test-cases
+2) 相关的共用接口放在ci-test-cases/utils中,如安装,启动服务等,大家尽量养成使用共用接口的良好习惯,方便之后版本更新;
+3) 注意: case的分解用例需要最后以报告的格式输出,可参照app/samba/samba.sh中提交格式,使用 app/utils/sys_info.sh中print_info接口
+
 
 2. 本地调试步骤
     1) 启动板子
@@ -24,10 +29,7 @@ lava_server:
 
 3) 下载 https://github.com/AlamelaLiu/ci-test-cases.git case测试脚本
     git clone https://github.com/EstuaryTestTeam/ci-test-cases.git
+    (注意:本地调试时case对应的yaml文件中run/step的相对路径变成了test-definition,故需要临时修改下yaml/run/step)
     test-runner -d app/samba/samba.yaml
 
 
-编写app case的规范:
-1) 新建的app case新建以case名称命名的文件夹,文件夹内放其yaml和sh文件,yaml文件由CI系统调用来触发测试,sh文件用来存放case的测试脚本;
-2) 相关的共用接口放在app/utils中,如安装,启动服务等,大家尽量养成使用共用接口的良好习惯,方便之后版本更新;
-3) 注意: case的分解用例需要最后以报告的格式输出,可参照app/samba/samba.sh中提交格式,使用 app/utils/sys_info.sh中print_info接口

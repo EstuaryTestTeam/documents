@@ -18,7 +18,7 @@
 	4)run:
 		steps:安装之后的动作(终端命令)
 		此处的当前路径是ci-test-case文件夹下,注意路径切换
-		例如: - "cd distro/common; ./ftp.sh; cd -"
+		例如: - "cd app/ftp; ./ftp.sh; cd -"
 	5)parse:
 		解析case测试结果,按如下方式书写即可:
 parse:

@@ -1,0 +1,28 @@
+1. ci系统调用app的yaml方式:
+	下载https://github.com/EstuaryTestTeam/ci-test-cases.git
+	进入ci-test-case文件夹下,调用 app/{$app_name}/{$app_name}.yaml
+
+2.yaml中定义方式:
+	1)metadata: 
+		name:case名称,可自行修改
+		format:目前是lava definition 1.0 ,无需修改
+		description:对case的简单描述
+		maintainer:维护此case的作者邮箱
+		scope:适用范围,暂无作用
+		os:支持的操作系统(发行版)
+		devices:支持的设备(开发板)
+	2)install:
+		deps:所需的安装包(所有系统共用)
+	3)params:
+		所需参数
+	4)run:
+		steps:安装之后的动作(终端命令)
+		此处的当前路径是ci-test-case文件夹下,注意路径切换
+	5)parse:
+		解析case测试结果,按如下方式书写即可:
+parse:
+    pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+    fixupdict:
+        FAIL: fail
+        PASS: pass
+
